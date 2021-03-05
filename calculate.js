@@ -1,8 +1,9 @@
+"use strict";
 function calculateScore() {
   var midtermScore, finalScore, average, message;
   message = "";
-  midtermScore = Number(document.getElementById("midterm").value);
-  finalScore = Number(document.getElementById("final").value);
+  midtermScore = document.getElementById("midterm").value;
+  finalScore = document.getElementById("final").value;
   if (isNaN(midtermScore) && isNaN(finalScore)) {
     document.getElementById("verifymidterm").innerHTML =
       "Vize Notu Sayısal Değer Olmalıdır!...";
@@ -25,7 +26,7 @@ function calculateScore() {
       "Ders notu Hesaplanamadı...";
     document.getElementById("final").value = "";
   } else {
-    while (midtermScore == 0 && finalScore == 0) {
+    while (midtermScore =="" && finalScore =="") {
       document.getElementById("verifymidterm").innerHTML =
         "Vize Notu Girişi Yapmadınız!...";
       document.getElementById("verifyfinal").innerHTML =
@@ -34,17 +35,17 @@ function calculateScore() {
         "Ders notu Hesaplanamadı!...";
       return false;
     }
-    while (midtermScore == 0) {
+    while (midtermScore =="") {
       document.getElementById("verifymidterm").innerHTML =
         "Vize Notu Girişi Yapmadınız!...";
       return false;
     }
-    while (finalScore == 0) {
+    while (finalScore =="") {
       document.getElementById("verifyfinal").innerHTML =
         "Final Notu Girişi Yapmadınız!...";
       return false;
     }
-    average = midtermScore * 0.4 + finalScore * 0.6;
+    average = Math.round(Number(midtermScore) * 0.4 + Number(finalScore) * 0.6);
     if (average > 0 && average <= 32) {
       message = "Başarısız";
       document.getElementById("resultScoreLetter").innerHTML = " FF";
@@ -86,31 +87,31 @@ function calculateScore() {
   }
   while (midtermScore > 100 && finalScore > 100) {
     document.getElementById("verifymidterm").innerHTML =
-    "Girilen vize notu 0-100 aralığında değil!....";
+      "Girilen vize notu 0-100 aralığında değil!....";
     document.getElementById("midterm").value = "";
     document.getElementById("verifyfinal").innerHTML =
-    "Girilen final notu 0-100 aralığında değil!...";
+      "Girilen final notu 0-100 aralığında değil!...";
     document.getElementById("final").value = "";
     return false;
   }
   while (midtermScore > 100) {
     document.getElementById("verifymidterm").innerHTML =
-    "Girilen vize notu 0-100 aralığında değil!....";
+      "Girilen vize notu 0-100 aralığında değil!....";
     document.getElementById("midterm").value = "";
     return false;
   }
   while (finalScore > 100) {
     document.getElementById("verifyfinal").innerHTML =
-    "Girilen final notu 0-100 aralığında değil!...";
+      "Girilen final notu 0-100 aralığında değil!...";
     document.getElementById("final").value = "";
     return false;
   }
   if (average == undefined) {
     document.getElementById("resultScore").innerHTML =
-    "Ders notu Hesaplanamadı...";
+      "Ders notu Hesaplanamadı...";
     document.getElementById("resultScoreLetter").innerHTML = "";
   } else {
     document.getElementById("resultScore").innerHTML = average;
   }
-   document.getElementById("result").innerHTML = message;
+  document.getElementById("result").innerHTML = message;
 }
